@@ -3,7 +3,7 @@ import PaginationControls from "../tables/paginationControls";
 import OrderTable from "../tables/orderTable";
 
 const TableCard = () => (
-  <div className="bg-white dark:bg-[#3c4555] p-4 rounded shadow h-full">
+  <div className="bg-white dark:bg-[#3c4555] p-4 md:p-6 rounded shadow h-full overflow-x-auto">
     <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Top Selling Products</h2>
     <OrderTable />
     <PaginationControls />

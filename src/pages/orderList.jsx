@@ -50,16 +50,15 @@ const OrderList = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-[#262930]">
       {/* Header */}
       <div className="bg-white dark:bg-[#3c4555] border-b border-gray-200 dark:border-gray-700">
-        <div className="px-6 py-4">
+        <div className="px-4 md:px-6 py-4">
           <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Order List</h1>
         </div>
       </div>
-
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 md:p-6">
         <div className="bg-white dark:bg-[#3c4555] rounded-lg border border-gray-200 dark:border-gray-700">
           {/* Table Header Controls */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 gap-4 md:gap-0">
             <div className="flex items-center space-x-2">
               <button className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <Plus className="w-4 h-4 text-gray-600 dark:text-gray-300" />
@@ -72,12 +71,12 @@ const OrderList = () => {
               </button>
             </div>
 
-            <div className="relative">
+            <div className="relative w-full max-w-xs">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500" />
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
               />
             </div>
           </div>
