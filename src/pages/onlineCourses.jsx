@@ -130,7 +130,7 @@ const OnlineCourses = () => {
   const CourseCard = ({ course }) => {
     const colors = getColorClasses(course.color);
     return (
-      <div className="bg-white dark:bg-[#262930] rounded-lg shadow-sm border hover:shadow-md transition-all duration-200 overflow-hidden">
+      <div className="bg-white dark:bg-[#3c4555] rounded-lg shadow-sm border hover:shadow-md transition-all duration-200 overflow-hidden">
         <div className={`${colors.gradient} relative flex items-center justify-center text-white aspect-video`}>
           <div className="text-center">
             <BookOpen size={32} className="mx-auto mb-2 opacity-80" />
@@ -145,7 +145,7 @@ const OnlineCourses = () => {
             {course.status}
           </span>
         </div>
-        <div className="p-6">
+        <div className="p-6 bg-gray-200 dark:bg-[#262930]">
           <div className="flex justify-between items-start mb-3">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 flex-1">{course.title}</h3>
             <MoreVertical size={20} className="text-gray-400 hover:text-gray-600 ml-2 cursor-pointer" />
@@ -270,7 +270,7 @@ const OnlineCourses = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#23272F]">
       {/* Header */}
-      <div className="bg-white dark:bg-[#262930]">
+      <div className="bg-white dark:bg-[#3c4555]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center h-auto md:h-16 gap-4 md:gap-0">
             <div className="flex items-center space-x-4">
@@ -292,7 +292,7 @@ const OnlineCourses = () => {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="bg-white dark:bg-[#262930] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6 mb-6">
+        <div className="bg-white dark:bg-[#3c4555] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-4">
             {/* Search */}
             <div className="lg:col-span-2">
@@ -399,7 +399,7 @@ const OnlineCourses = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow-sm border overflow-x-auto dark:bg-[#262930] dark:border-gray-700">
+              <div className="bg-white rounded-lg shadow-sm border overflow-x-auto dark:bg-[#3c4555] dark:border-gray-700">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-[#23272F]">
                     <tr>
@@ -413,7 +413,7 @@ const OnlineCourses = () => {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-[#262930] dark:divide-gray-700">
+                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-[#3c4555] dark:divide-gray-700">
                     {filteredCourses.map(course => (
                       <CourseRow key={course.id} course={course} />
                     ))}

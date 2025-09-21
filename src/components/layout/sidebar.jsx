@@ -40,8 +40,7 @@ const Sidebar = () => {
   // Navigation configuration
   const navigationConfig = {
     favorites: [
-      { to: "/overview", label: "Overview", icon: Circle, iconSize: 4 },
-      { to: "/projects-fav", label: "Projects", icon: Circle, iconSize: 4 },
+      { to: "/overview", label: "Overview", icon: Circle, iconSize: 4 }
     ],
     dashboards: [
       { to: "/", label: "Default", icon: LayoutDashboard },
@@ -94,7 +93,7 @@ const styles = {
   inactiveChild:
     "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-[#2A2D35] dark:hover:text-gray-100",
   activeBorder:
-    "absolute left-0 top-0 w-1 h-full bg-gray-700 rounded-r-sm",
+    "absolute left-0 top-0 w-1 h-full bg-gray-700 dark:bg-gray-200 rounded-r-sm",
 };
 
   // Render nav link

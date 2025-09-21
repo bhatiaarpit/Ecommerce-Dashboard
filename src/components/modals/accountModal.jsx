@@ -1,319 +1,196 @@
-// components/modals/AccountModal.js
 import React, { useState } from 'react';
 import {
-    X,
-    User,
-    Settings,
-    Bell,
-    Shield,
-    CreditCard,
-    HelpCircle,
-    LogOut,
-    ChevronRight,
-    Edit3,
-    Moon,
-    Globe,
-    Key
+  X,
+  User,
+  Settings,
+  Bell,
+  Shield,
+  CreditCard,
+  HelpCircle,
+  LogOut,
+  ChevronRight,
+  Edit3,
+  Moon,
+  Globe,
+  Key
 } from 'lucide-react';
 
-const accountModal = ({ isOpen, onClose }) => {
-    const [activeTab, setActiveTab] = useState('profile');
+const AccountModal = ({ isOpen, onClose }) => {
+  const [activeTab, setActiveTab] = useState('profile');
+  const [notifications, setNotifications] = useState(true);
 
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    const handleOverlayClick = (e) => {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    };
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
-    const menuItems = [
-        {
-            id: 'profile',
-            label: 'My Profile',
-            icon: User,
-            description: 'Manage your personal information'
-        },
-        {
-            id: 'settings',
-            label: 'Account Settings',
-            icon: Settings,
-            description: 'Privacy, security, and preferences'
-        },
-        {
-            id: 'notifications',
-            label: 'Notifications',
-            icon: Bell,
-            description: 'Email and push notification settings'
-        },
-        {
-            id: 'security',
-            label: 'Security',
-            icon: Shield,
-            description: 'Password and two-factor authentication'
-        },
-        {
-            id: 'billing',
-            label: 'Billing & Payments',
-            icon: CreditCard,
-            description: 'Manage your subscription and payments'
-        },
-        {
-            id: 'help',
-            label: 'Help & Support',
-            icon: HelpCircle,
-            description: 'Get help and contact support'
-        }
-    ];
+  const menuItems = [
+    {
+      id: 'profile',
+      label: 'My Profile',
+      icon: User,
+      description: 'Manage your personal information'
+    },
+    {
+      id: 'settings',
+      label: 'Account Settings',
+      icon: Settings,
+      description: 'Privacy, security, and preferences'
+    },
+    {
+      id: 'notifications',
+      label: 'Notifications',
+      icon: Bell,
+      description: 'Email and push notification settings'
+    },
+    {
+      id: 'security',
+      label: 'Security',
+      icon: Shield,
+      description: 'Password and two-factor authentication'
+    },
+    {
+      id: 'billing',
+      label: 'Billing & Payments',
+      icon: CreditCard,
+      description: 'Manage your subscription and payments'
+    },
+    {
+      id: 'help',
+      label: 'Help & Support',
+      icon: HelpCircle,
+      description: 'Get help and contact support'
+    }
+  ];
 
-    const ProfileSection = () => (
-        <div className="p-6">
-            <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                    AB
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900">Arpit Bhatia</h3>
-                <p className="text-sm text-gray-600">arpit@example.com</p>
-                <button className="mt-2 inline-flex items-center px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-gray-700">
-                    <Edit3 className="w-4 h-4 mr-1" />
-                    Edit Profile
-                </button>
-            </div>
-            
-            <div className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input 
-                        type="text" 
-                        defaultValue="Arpit Bhatia"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input 
-                        type="email" 
-                        defaultValue="arpit@example.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                    <input 
-                        type="text" 
-                        defaultValue="Frontend Developer"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-            </div>
-        </div>
-    );
-
-    const SettingsSection = () => (
-        <div className="p-6 space-y-4">
-            <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                <div className="flex items-center">
-                    <Moon className="w-5 h-5 text-gray-400 mr-3" />
-                    <div>
-                        <p className="text-sm font-medium text-gray-900">Dark Mode</p>
-                        <p className="text-xs text-gray-600">Switch to dark theme</p>
-                    </div>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-            </div>
-            
-            <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                <div className="flex items-center">
-                    <Globe className="w-5 h-5 text-gray-400 mr-3" />
-                    <div>
-                        <p className="text-sm font-medium text-gray-900">Language</p>
-                        <p className="text-xs text-gray-600">English (US)</p>
-                    </div>
-                </div>
-                <ChevronRight className="w-5 h-5 text-gray-400" />
-            </div>
-            
-            <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                <div className="flex items-center">
-                    <Key className="w-5 h-5 text-gray-400 mr-3" />
-                    <div>
-                        <p className="text-sm font-medium text-gray-900">Privacy</p>
-                        <p className="text-xs text-gray-600">Manage data and privacy settings</p>
-                    </div>
-                </div>
-                <ChevronRight className="w-5 h-5 text-gray-400" />
-            </div>
-        </div>
-    );
-
-    const renderContent = () => {
-        switch (activeTab) {
-            case 'profile':
-                return <ProfileSection />;
-            case 'settings':
-                return <SettingsSection />;
-            case 'notifications':
-                return (
-                    <div className="p-6">
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-sm font-medium text-gray-900">Email Notifications</p>
-                                    <p className="text-xs text-gray-600">Receive updates via email</p>
-                                </div>
-                                <input type="checkbox" defaultChecked className="rounded border-gray-300" />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-sm font-medium text-gray-900">Push Notifications</p>
-                                    <p className="text-xs text-gray-600">Receive push notifications</p>
-                                </div>
-                                <input type="checkbox" className="rounded border-gray-300" />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-sm font-medium text-gray-900">Marketing Emails</p>
-                                    <p className="text-xs text-gray-600">Receive promotional content</p>
-                                </div>
-                                <input type="checkbox" defaultChecked className="rounded border-gray-300" />
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 'security':
-                return (
-                    <div className="p-6 space-y-4">
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Change Password</p>
-                            <p className="text-xs text-gray-600">Update your account password</p>
-                        </button>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Two-Factor Authentication</p>
-                            <p className="text-xs text-gray-600">Add extra security to your account</p>
-                        </button>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Active Sessions</p>
-                            <p className="text-xs text-gray-600">Manage your active login sessions</p>
-                        </button>
-                    </div>
-                );
-            case 'billing':
-                return (
-                    <div className="p-6 space-y-4">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <p className="text-sm font-medium text-gray-900">Current Plan: Pro</p>
-                            <p className="text-xs text-gray-600">$29/month • Next billing: Jan 15, 2024</p>
-                        </div>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Payment Methods</p>
-                            <p className="text-xs text-gray-600">Manage cards and payment options</p>
-                        </button>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Billing History</p>
-                            <p className="text-xs text-gray-600">View past invoices and receipts</p>
-                        </button>
-                    </div>
-                );
-            case 'help':
-                return (
-                    <div className="p-6 space-y-4">
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Help Center</p>
-                            <p className="text-xs text-gray-600">Browse help articles and guides</p>
-                        </button>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Contact Support</p>
-                            <p className="text-xs text-gray-600">Get help from our support team</p>
-                        </button>
-                        <button className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <p className="text-sm font-medium text-gray-900">Report a Bug</p>
-                            <p className="text-xs text-gray-600">Let us know about any issues</p>
-                        </button>
-                    </div>
-                );
-            default:
-                return <ProfileSection />;
-        }
-    };
-
+  const renderProfile = () => {
     return (
-        <div 
-            className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
-            onClick={handleOverlayClick}
-        >
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden">
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Account</h2>
-                    <button
-                        onClick={onClose}
-                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-                    >
-                        <X className="w-5 h-5 text-gray-500 dark:text-gray-300" />
-                    </button>
-                </div>
+      <div className="p-6">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mx-auto text-white text-4xl font-bold mb-4">
+            AB
+          </div>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Arpit Bhatia</h2>
+          <p className="text-gray-600 dark:text-gray-300">arpit@example.com</p>
+          <button className="mt-2 px-4 py-2 bg-gray-100 dark:bg-[#2c3043] dark:hover:bg-[#3d4158] hover:bg-gray-200 rounded-md text-sm text-gray-700 dark:text-gray-300 flex items-center justify-center space-x-2">
+            <Edit3 className="w-4 h-4" />
+            <span>Edit Profile</span>
+          </button>
 
-                <div className="flex">
-                    {/* Sidebar */}
-                    <div className="w-64 bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
-                        <nav className="p-4 space-y-2">
-                            {menuItems.map((item) => {
-                                const Icon = item.icon;
-                                return (
-                                    <button
-                                        key={item.id}
-                                        onClick={() => setActiveTab(item.id)}
-                                        className={`w-full text-left p-3 rounded-lg transition-colors ${
-                                            activeTab === item.id
-                                                ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                                                : 'hover:bg-gray-100'
-                                        }`}
-                                    >
-                                        <div className="flex items-center">
-                                            <Icon className="w-5 h-5 mr-3" />
-                                            <div>
-                                                <p className="text-sm font-medium">{item.label}</p>
-                                                <p className="text-xs text-gray-600 hidden sm:block">{item.description}</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                );
-                            })}
-                        </nav>
-
-                        {/* Logout Button */}
-                        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-                            <button className="w-full flex items-center p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg">
-                                <LogOut className="w-5 h-5 mr-3" />
-                                <span className="text-sm font-medium">Sign Out</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="flex-1 overflow-y-auto max-h-[calc(90vh-80px)] bg-white dark:bg-gray-900">
-                        {renderContent()}
-                    </div>
-                </div>
-
-                {/* Footer */}
-                <div className="flex justify-end space-x-3 p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800">
-                    <button
-                        onClick={onClose}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800"
-                    >
-                        Cancel
-                    </button>
-                    <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
-                        Save Changes
-                    </button>
-                </div>
+          <form className="mt-6 space-y-4 text-left text-gray-900 dark:text-gray-100">
+            <div>
+              <label className="block mb-1 font-medium">Full Name</label>
+              <input type="text" defaultValue="Arpit Bhatia" className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-2 bg-white dark:bg-[#232c3a] focus:ring-blue-500 focus:outline-none" />
             </div>
+            <div>
+              <label className="block mb-1 font-medium">Email</label>
+              <input type="email" defaultValue="arpit@example.com" className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-2 bg-white dark:bg-[#232c3a] focus:ring-blue-500 focus:outline-none" />
+            </div>
+            <div>
+              <label className="block mb-1 font-medium">Role</label>
+              <input type="text" defaultValue="Frontend Developer" className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-2 bg-white dark:bg-[#232c3a] focus:ring-blue-500 focus:outline-none" />
+            </div>
+          </form>
         </div>
+      </div>
     );
+  };
+
+  const renderSettings = () => {
+    return (
+      <div className="p-6 space-y-6 text-gray-900 dark:text-gray-100">
+        <div className="flex justify-between items-center border-b border-gray-300 dark:border-gray-700 py-4">
+          <div className="flex items-center space-x-3">
+            <Moon className="w-6 h-6" />
+            <div>
+              <p className="font-semibold">Dark Mode</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Use dark theme</p>
+            </div>
+          </div>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" className="sr-only peer" />
+            <div className="w-11 h-6 bg-gray-300 dark:bg-gray-600 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:bg-blue-600 relative transition-colors"></div>
+            <div className="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform peer-checked:translate-x-5"></div>
+          </label>
+        </div>
+        {/* Additional settings sections as needed */}
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'profile':
+        return renderProfile();
+      case 'settings':
+        return renderSettings();
+      // Add further tabs rendering here.
+      default:
+        return renderProfile();
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50" onClick={handleOverlayClick}>
+      <div className="fixed inset-0 bg-black/40 bg-opacity-50" />
+      <div className="fixed inset-0 flex items-center justify-center p-4">
+        <div className="bg-white dark:bg-[#232c3a] rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
+          <header className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700 p-4">
+            <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Account</h1>
+            <button onClick={onClose} className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-[#3d4158] transition-colors">
+              <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+            </button>
+          </header>
+          <div className="flex h-[calc(90vh_-_56px)] overflow-hidden">
+            <aside className="w-64 bg-white dark:bg-[#262c38] border-r border-gray-300 dark:border-gray-700 p-4 flex flex-col justify-between">
+              <nav>
+                {menuItems.map(({ id, label, icon: Icon, description }) => (
+                  <button
+                    key={id}
+                    onClick={() => setActiveTab(id)}
+                    className={`w-full flex items-center p-3 rounded-md mb-2 text-left transition-colors ${
+                      id === activeTab
+                        ? 'bg-blue-500 text-white'
+                        : 'text-gray-900 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#3d4158]'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5 mr-3" />
+                    <div>
+                      <p className="font-medium">{label}</p>
+                      <p className="text-xs">{description}</p>
+                    </div>
+                  </button>
+                ))}
+              </nav>
+              <div>
+                <button
+                  onClick={() => alert('Signing out...')}
+                  className="w-full flex items-center p-3 rounded-md text-red-600 hover:bg-red-100 dark:hover:bg-red-900"
+                >
+                  <LogOut className="w-5 h-5 mr-3" />
+                  Sign Out
+                </button>
+              </div>
+            </aside>
+            <main className="flex-1 bg-white dark:bg-[#232c3a] overflow-auto">
+              {renderContent()}
+            </main>
+          </div>
+          <footer className="flex justify-end p-4 border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#2c3043]">
+            <button onClick={onClose} className="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#3d4158] hover:bg-gray-200 dark:hover:bg-[#3d4158] text-gray-900 dark:text-gray-300">
+              Cancel
+            </button>
+            <button className="ml-3 px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white">
+              Save Changes
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default accountModal;
+export default AccountModal;
