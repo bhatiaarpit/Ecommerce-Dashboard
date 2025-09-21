@@ -1,6 +1,11 @@
 # Ecommerce Dashboard
 A modern, feature-rich ecommerce dashboard application built with React and Vite. It offers a sleek, responsive design with both dark and light mode themes that adapt seamlessly across devices. This dashboard includes essential ecommerce management features like analytics, product and customer management, user profiles, settings, and notifications.
 
+## Live Link: https://ecom-dashboard-by-arpit.vercel.app/
+<img width="1918" height="905" alt="Screenshot 2025-09-21 230738" src="https://github.com/user-attachments/assets/4518647a-f691-4914-9ea5-69ca632db7a6" />
+
+
+
 ## Features
 - Fully responsive design optimized for desktop, tablet, and mobile devices
 - Dark mode and light mode support with smooth theme toggling
@@ -39,7 +44,7 @@ npm run dev
 # or
 yarn dev
 ```
-Navigate to http://localhost:3000 to view the app.
+Navigate to http://localhost:5173 to view the app.
 
 ### Building for Production
 ```bash
