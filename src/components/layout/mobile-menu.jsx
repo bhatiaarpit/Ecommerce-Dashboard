@@ -1,0 +1,275 @@
+import React, { useState } from "react";
+import {
+  LayoutDashboard,
+  ShoppingCart,
+  Briefcase,
+  PlayCircle,
+  User,
+  FileText,
+  Building,
+  BookOpen,
+  Share2,
+  ChevronDown,
+  ChevronRight,
+  Users,
+  Package,
+  ShoppingBag,
+  TrendingUp,
+  Circle,
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
+
+const navigationConfig = {
+  favorites: [
+    { to: "/overview", label: "Overview", icon: Circle, iconSize: 4 },
+    { to: "/projects-fav", label: "Projects", icon: Circle, iconSize: 4 },
+  ],
+  dashboards: [
+    { to: "/", label: "Default", icon: LayoutDashboard },
+    {
+      label: "eCommerce",
+      icon: ShoppingCart,
+      section: "ecommerce",
+      children: [
+        { to: "/ecommerce", label: "Dashboard", icon: TrendingUp },
+        { to: "/orders", label: "Orders", icon: ShoppingBag },
+        { to: "/customers", label: "Customers", icon: Users },
+        { to: "/products", label: "Products", icon: Package },
+      ],
+    },
+    {
+      label: "Projects",
+      icon: Briefcase,
+      section: "projects",
+      children: [{ to: "/projects", label: "All Projects" }],
+    },
+    { to: "/online-courses", label: "Online Courses", icon: PlayCircle },
+  ],
+  pages: [
+    {
+      label: "User Profile",
+      icon: User,
+      section: "userProfile",
+      children: [
+        { label: "Overview" },
+        { label: "Projects" },
+        { label: "Campaigns" },
+        { label: "Documents" },
+        { label: "Followers" },
+      ],
+    },
+    { label: "Account", icon: FileText, section: "account" },
+    { label: "Corporate", icon: Building, section: "corporate" },
+    { label: "Blog", icon: BookOpen, section: "blog" },
+    { label: "Social", icon: Share2, section: "social" },
+  ],
+};
+
+const styles = {
+  activeLink:
+    "text-blue-600 bg-blue-50 font-medium dark:text-blue-400 dark:bg-gray-950",
+  inactiveLink:
+    "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800",
+  activeChild:
+    "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-gray-950",
+  inactiveChild:
+    "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100",
+  activeBorder:
+    "absolute left-0 top-0 w-1 h-full bg-gray-800 dark:bg-blue-700 rounded-r-sm",
+};
+
+const MobileMenu = ({ isOpen, onClose }) => {
+  const [collapsedSections, setCollapsedSections] = useState({
+    ecommerce: false,
+    projects: true,
+    userProfile: true,
+    account: true,
+    corporate: true,
+    blog: true,
+    social: true,
+  });
+
+  const toggleSection = (section) => {
+    setCollapsedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const renderNavLink = ({
+    to,
+    label,
+    icon: Icon,
+    iconSize = 16,
+    isChild = false,
+  }) => (
+    <li className="relative">
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `flex items-center gap-3 px-3 py-${isChild ? "1.5" : "2"} rounded-md transition-colors relative ${
+            isActive
+              ? isChild
+                ? styles.activeChild
+                : styles.activeLink
+              : isChild
+              ? styles.inactiveChild
+              : styles.inactiveLink
+          } ${isChild ? "text-sm" : ""}`
+        }
+        onClick={onClose}
+      >
+        {({ isActive }) => (
+          <>
+            {isActive && <div className={styles.activeBorder}></div>}
+            {Icon && (
+              <Icon
+                size={iconSize}
+                className={`${
+                  isActive ? "ml-1" : ""
+                } ${iconSize === 4 ? "fill-current" : ""}`}
+              />
+            )}
+            <span className={!Icon && isActive ? "ml-1" : ""}>{label}</span>
+          </>
+        )}
+      </NavLink>
+    </li>
+  );
+
+  const renderCollapsibleSection = (item) => (
+    <li key={item.label}>
+      <div
+        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-gray-800"
+        onClick={() => toggleSection(item.section)}
+      >
+        <div className="flex items-center gap-3">
+          <item.icon size={16} />
+          <span>{item.label}</span>
+        </div>
+        {collapsedSections[item.section] ? (
+          <ChevronRight size={14} className="text-gray-400 dark:text-gray-500" />
+        ) : (
+          <ChevronDown size={14} className="text-gray-400 dark:text-gray-500" />
+        )}
+      </div>
+      {!collapsedSections[item.section] && item.children && (
+        <ul className="ml-6 mt-1 space-y-1">
+          {item.children.map((child, index) =>
+            child.to ? (
+              renderNavLink({ ...child, isChild: true })
+            ) : (
+              <li key={index}>
+                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+                  {child.label}
+                </div>
+              </li>
+            )
+          )}
+        </ul>
+      )}
+    </li>
+  );
+
+  const renderNavSection = (title, items) => (
+    <div className="mb-6">
+      <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium dark:text-gray-400">
+        {title}
+      </div>
+      <ul className="space-y-1">
+        {items.map((item) =>
+          item.section ? renderCollapsibleSection(item) : renderNavLink(item)
+        )}
+      </ul>
+    </div>
+  );
+
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-30 bg-black/40 flex">
+      <div className="w-64 bg-white dark:bg-gray-900 h-full shadow-lg p-4 overflow-y-auto relative flex flex-col">
+        {/* Close Button */}
+        <button
+          className="absolute top-3 right-3 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300"
+          onClick={onClose}
+          aria-label="Close menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        {/* Logo */}
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-6 h-6 bg-gray-800 dark:bg-gray-200 rounded-sm flex items-center justify-center text-white dark:text-gray-900 text-xs font-bold">
+            B
+          </div>
+          <span className="font-semibold text-gray-900 dark:text-gray-100">
+            ByeWind
+          </span>
+        </div>
+        <nav className="flex-1 text-sm">
+          {renderNavSection("Favorites", navigationConfig.favorites)}
+          {renderNavSection("Dashboards", navigationConfig.dashboards)}
+          <div>
+            <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium dark:text-gray-400">
+              Pages
+            </div>
+            <ul className="space-y-1">
+              {navigationConfig.pages.map((item) =>
+                renderCollapsibleSection(item)
+              )}
+            </ul>
+          </div>
+        </nav>
+        {/* Bottom Actions */}
+        <div className="mt-6 mb-2 flex flex-col gap-2">
+          <button
+            className="w-full flex items-center justify-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700"
+            onClick={() => {
+              if (window && window.dispatchEvent) {
+                window.dispatchEvent(new CustomEvent("openSettingsModal"));
+              }
+              onClose();
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Settings
+          </button>
+          <button
+            className="w-full flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700"
+            onClick={onClose}
+          >
+            Close Menu
+          </button>
+        </div>
+      </div>
+      <div className="flex-1" onClick={onClose}></div>
+    </div>
+  );
+};
+
+export default MobileMenu;

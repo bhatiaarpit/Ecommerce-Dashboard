@@ -12,7 +12,7 @@ const products = [
 
 const orderTable = () => {
   return (
-    <table className="min-w-full bg-white">
+    <table className="min-w-full bg-white dark:bg-gray-900">
       <TableHeader />
       <tbody>
         {products.map((product, idx) => (

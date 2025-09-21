@@ -53,27 +53,27 @@ const StatCard = ({ title, value, change, isPositive, cardType = "default" }) =>
     const valueColor = getValueColor(cardType);
 
     return (
-        <div className={`${cardStyles} rounded-xl p-6 border shadow-sm`}>
+        <div className={`${cardStyles} dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 border shadow-sm`}>
             <div className="flex items-start justify-between">
                 <div className="flex-1">
-                    <p className={`text-sm font-medium ${textColor} mb-2`}>
+                    <p className={`text-sm font-medium ${textColor} dark:text-gray-300 mb-2`}>
                         {title}
                     </p>
-                    <p className={`text-3xl font-bold ${valueColor} mb-3`}>
+                    <p className={`text-3xl font-bold ${valueColor} dark:text-gray-100 mb-3`}>
                         {value}
                     </p>
                     <div className="flex items-center">
                         <span
                             className={`text-sm font-medium mr-1 ${
-                                isPositive ? "text-green-600" : "text-red-600"
+                                isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
                             }`}
                         >
                             {change}
                         </span>
                         {isPositive ? (
-                            <TrendingUp className="h-4 w-4 text-green-500" />
+                            <TrendingUp className="h-4 w-4 text-green-500 dark:text-green-400" />
                         ) : (
-                            <TrendingDown className="h-4 w-4 text-red-500" />
+                            <TrendingDown className="h-4 w-4 text-red-500 dark:text-red-400" />
                         )}
                     </div>
                 </div>

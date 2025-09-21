@@ -24,19 +24,19 @@ import TableCard from "../components/dashboard/tableCard"; // Make sure this imp
 const Dashboard = () => {
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Header - matches the layout exactly */}
-            <div className="bg-white border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-6 py-4">
-                    <h1 className="text-xl font-semibold text-gray-900">eCommerce</h1>
+            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">eCommerce</h1>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 py-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
                 {/* Top Row - Blue Stat Cards with different shades */}
-                <div className="grid grid-cols-3 gap-6 mb-6">
-                    <div className="col-span-2">
-                        <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div className="md:col-span-2 col-span-1">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <StatCard
                                 title="Customers"
                                 value="3,781"
@@ -68,27 +68,27 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className="col-span-1">
+                    <div className="md:col-span-1 col-span-1">
                         <ProjectionsChart />
                     </div>
                 </div>
 
                 {/* Third Row - Revenue Chart + Location Map */}
-                <div className="grid grid-cols-3 gap-6 mb-6">
-                    <div className="col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div className="md:col-span-2 col-span-1">
                         <RevenueChartCard />
                     </div>
-                    <div className="col-span-1">
+                    <div className="md:col-span-1 col-span-1">
                         <RevenueByLocation />
                     </div>
                 </div>
 
                 {/* Bottom Row - Table + Pie Chart */}
-                <div className="grid grid-cols-3 gap-6">
-                    <div className="col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="md:col-span-2 col-span-1">
                         <TableCard />
                     </div>
-                    <div className="col-span-1">
+                    <div className="md:col-span-1 col-span-1">
                         <TotalSalesChart />
                     </div>
                 </div>

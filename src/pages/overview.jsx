@@ -138,17 +138,16 @@ const UserProfileOverview = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200">
-                <div className="px-6 py-4">
-                    <h1 className="text-xl font-semibold text-gray-900">User Profile</h1>
+            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+                <div className="px-4 md:px-6 py-4">
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">User Profile</h1>
                 </div>
             </div>
-
-            <div className="max-w-7xl mx-auto px-6 py-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
                 {/* Profile Header */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+                <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4 md:p-6 mb-6">
                     <div className="flex items-start justify-between">
                         <div className="flex items-start space-x-6">
                             {/* Avatar */}
@@ -159,14 +158,14 @@ const UserProfileOverview = () => {
                             {/* Basic Info */}
                             <div className="flex-1">
                                 <div className="flex items-center space-x-3 mb-2">
-                                    <h2 className="text-2xl font-bold text-gray-900">{userData.name}</h2>
+                                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{userData.name}</h2>
                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                         <CheckCircle className="w-3 h-3 mr-1" />
                                         Active
                                     </span>
                                 </div>
                                 
-                                <div className="space-y-2 text-sm text-gray-600">
+                                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                                     <div className="flex items-center">
                                         <Briefcase className="w-4 h-4 mr-2" />
                                         {userData.role} at {userData.company}
@@ -234,16 +233,16 @@ const UserProfileOverview = () => {
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                     {stats.map((stat, index) => (
-                        <div key={index} className="bg-white rounded-lg border border-gray-200 p-6">
+                        <div key={index} className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">{stat.label}</p>
-                                    <p className="text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
+                                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{stat.label}</p>
+                                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">{stat.value}</p>
                                 </div>
                                 <div className={`flex items-center text-sm ${
-                                    stat.color === 'green' ? 'text-green-600' :
-                                    stat.color === 'blue' ? 'text-blue-600' :
-                                    'text-gray-600'
+                                    stat.color === 'green' ? 'text-green-600 dark:text-green-400' :
+                                    stat.color === 'blue' ? 'text-blue-600 dark:text-blue-400' :
+                                    'text-gray-600 dark:text-gray-300'
                                 }`}>
                                     {stat.color === 'green' && <TrendingUp className="w-4 h-4 mr-1" />}
                                     {stat.trend}
@@ -258,11 +257,11 @@ const UserProfileOverview = () => {
                     {/* Left Column - Projects & Activity */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Recent Projects */}
-                        <div className="bg-white rounded-lg border border-gray-200">
-                            <div className="p-6 border-b border-gray-200">
+                        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+                            <div className="p-6 border-b border-gray-200 dark:border-gray-800">
                                 <div className="flex items-center justify-between">
-                                    <h3 className="text-lg font-semibold text-gray-900">Recent Projects</h3>
-                                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Recent Projects</h3>
+                                    <button className="text-blue-600 dark:text-blue-400 hover:text-blue-800 text-sm font-medium">
                                         View All
                                     </button>
                                 </div>
@@ -311,9 +310,9 @@ const UserProfileOverview = () => {
                         </div>
 
                         {/* Recent Activity */}
-                        <div className="bg-white rounded-lg border border-gray-200">
-                            <div className="p-6 border-b border-gray-200">
-                                <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+                            <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Recent Activity</h3>
                             </div>
                             <div className="p-6">
                                 <div className="space-y-4">
@@ -326,9 +325,9 @@ const UserProfileOverview = () => {
                                                 {activity.type === 'review' && <Eye className="w-4 h-4 text-orange-600" />}
                                             </div>
                                             <div className="flex-1">
-                                                <p className="text-sm text-gray-900">
+                                                <p className="text-sm text-gray-900 dark:text-gray-100">
                                                     <span className="font-medium">{activity.action}</span> in{' '}
-                                                    <span className="font-medium text-blue-600">{activity.project}</span>
+                                                    <span className="font-medium text-blue-600 dark:text-blue-400">{activity.project}</span>
                                                 </p>
                                                 <p className="text-xs text-gray-600 flex items-center mt-1">
                                                     <Clock className="w-3 h-3 mr-1" />
@@ -345,8 +344,8 @@ const UserProfileOverview = () => {
                     {/* Right Column - Skills & Info */}
                     <div className="space-y-6">
                         {/* Skills */}
-                        <div className="bg-white rounded-lg border border-gray-200 p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Skills</h3>
+                        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Skills</h3>
                             <div className="flex flex-wrap gap-2">
                                 {userData.skills.map((skill, index) => (
                                     <span
@@ -360,20 +359,20 @@ const UserProfileOverview = () => {
                         </div>
 
                         {/* Contact Information */}
-                        <div className="bg-white rounded-lg border border-gray-200 p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
+                        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Contact Information</h3>
                             <div className="space-y-3">
                                 <div className="flex items-center text-sm">
                                     <Mail className="w-4 h-4 text-gray-400 mr-3" />
-                                    <span className="text-gray-900">{userData.email}</span>
+                                    <span className="text-gray-900 dark:text-gray-100">{userData.email}</span>
                                 </div>
                                 <div className="flex items-center text-sm">
                                     <Phone className="w-4 h-4 text-gray-400 mr-3" />
-                                    <span className="text-gray-900">{userData.phone}</span>
+                                    <span className="text-gray-900 dark:text-gray-100">{userData.phone}</span>
                                 </div>
                                 <div className="flex items-center text-sm">
                                     <Globe className="w-4 h-4 text-gray-400 mr-3" />
-                                    <a href={`https://${userData.website}`} className="text-blue-600 hover:text-blue-800">
+                                    <a href={`https://${userData.website}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-800">
                                         {userData.website}
                                     </a>
                                 </div>
@@ -381,8 +380,8 @@ const UserProfileOverview = () => {
                         </div>
 
                         {/* Quick Actions */}
-                        <div className="bg-white rounded-lg border border-gray-200 p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
                             <div className="space-y-2">
                                 <button className="w-full flex items-center px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 rounded-md">
                                     <Plus className="w-4 h-4 mr-3" />

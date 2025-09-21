@@ -10,8 +10,10 @@ const salesChannels = [
 
 // Total Sales Pie Chart
 const TotalSalesChart = () => (
-  <div className="bg-white p-6 rounded-lg shadow-sm">
-    <h3 className="text-lg font-semibold text-gray-900 mb-6">Total Sales</h3>
+  <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">
+      Total Sales
+    </h3>
     <div className="flex items-center justify-center mb-6">
       <div className="relative">
         <ResponsiveContainer width={180} height={180}>
@@ -33,7 +35,9 @@ const TotalSalesChart = () => (
         </ResponsiveContainer>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <div className="text-lg font-bold text-gray-900">38.6%</div>
+            <div className="text-lg font-bold text-gray-900 dark:text-gray-100">
+              38.6%
+            </div>
           </div>
         </div>
       </div>
@@ -46,9 +50,11 @@ const TotalSalesChart = () => (
               className="w-3 h-3 rounded-full mr-3"
               style={{ backgroundColor: channel.color }}
             ></div>
-            <span className="text-sm text-gray-600">{channel.name}</span>
+            <span className="text-sm text-gray-600 dark:text-gray-300">
+              {channel.name}
+            </span>
           </div>
-          <span className="text-sm font-medium text-gray-900">
+          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
             ${channel.value}
           </span>
         </div>

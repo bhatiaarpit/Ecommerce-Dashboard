@@ -244,21 +244,21 @@ const accountModal = ({ isOpen, onClose }) => {
             className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
             onClick={handleOverlayClick}
         >
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                    <h2 className="text-xl font-semibold text-gray-900">Account</h2>
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Account</h2>
                     <button
                         onClick={onClose}
-                        className="p-2 hover:bg-gray-100 rounded-full"
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
                     >
-                        <X className="w-5 h-5 text-gray-500" />
+                        <X className="w-5 h-5 text-gray-500 dark:text-gray-300" />
                     </button>
                 </div>
 
                 <div className="flex">
                     {/* Sidebar */}
-                    <div className="w-64 bg-gray-50 border-r border-gray-200">
+                    <div className="w-64 bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
                         <nav className="p-4 space-y-2">
                             {menuItems.map((item) => {
                                 const Icon = item.icon;
@@ -285,8 +285,8 @@ const accountModal = ({ isOpen, onClose }) => {
                         </nav>
 
                         {/* Logout Button */}
-                        <div className="p-4 border-t border-gray-200">
-                            <button className="w-full flex items-center p-3 text-red-600 hover:bg-red-50 rounded-lg">
+                        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                            <button className="w-full flex items-center p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg">
                                 <LogOut className="w-5 h-5 mr-3" />
                                 <span className="text-sm font-medium">Sign Out</span>
                             </button>
@@ -294,16 +294,16 @@ const accountModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Main Content */}
-                    <div className="flex-1 overflow-y-auto max-h-[calc(90vh-80px)]">
+                    <div className="flex-1 overflow-y-auto max-h-[calc(90vh-80px)] bg-white dark:bg-gray-900">
                         {renderContent()}
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="flex justify-end space-x-3 p-6 border-t border-gray-200 bg-gray-50">
+                <div className="flex justify-end space-x-3 p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800"
                     >
                         Cancel
                     </button>

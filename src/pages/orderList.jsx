@@ -47,19 +47,19 @@ const OrderList = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200">
+            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
                 <div className="px-6 py-4">
-                    <h1 className="text-xl font-semibold text-gray-900">Order List</h1>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Order List</h1>
                 </div>
             </div>
 
             {/* Content */}
             <div className="p-6">
-                <div className="bg-white rounded-lg border border-gray-200">
+                <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
                     {/* Table Header Controls */}
-                    <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                    <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
                         <div className="flex items-center space-x-2">
                             <button className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md hover:bg-gray-200">
                                 <Plus className="w-4 h-4 text-gray-600" />

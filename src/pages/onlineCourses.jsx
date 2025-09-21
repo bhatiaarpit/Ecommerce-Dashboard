@@ -282,14 +282,14 @@ const OnlineCourses = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white">
+      <div className="bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center h-auto md:h-16 gap-4 md:gap-0">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">Online Courses</h1>
-              <span className="text-sm text-gray-500">{filteredCourses.length} courses</span>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Online Courses</h1>
+              <span className="text-sm text-gray-500 dark:text-gray-300">{filteredCourses.length} courses</span>
             </div>
             <div className="flex items-center space-x-4">
               <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
@@ -304,10 +304,9 @@ const OnlineCourses = () => {
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-4 md:p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-4">
             <div className="lg:col-span-2">
               <div className="relative">
@@ -389,17 +388,16 @@ const OnlineCourses = () => {
             </div>
           </div>
         </div>
-
         {/* Courses Display */}
         {filteredCourses.length > 0 ? (
           filters.viewMode === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCourses.map(course => (
                 <CourseCard key={course.id} course={course} />
               ))}
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+            <div className="bg-white rounded-lg shadow-sm border overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>

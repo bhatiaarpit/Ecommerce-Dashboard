@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import Sidebar from './components/layout/sidebar';
 import RightSidebar from './components/layout/rightSidebar';
 import Dashboard from './pages/dashboard';
@@ -13,22 +14,45 @@ import AccountModal from './components/modals/accountModal';
 import Customers from './pages/customer';
 import Products from './pages/products';
 import Overview from './pages/overview';
+import Header from './components/layout/header';
+import MobileMenu from './components/layout/mobile-menu';
 
 
 function App() {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleRightSidebar = () => setIsRightSidebarOpen((prev) => !prev);
   const toggleSettingsModal = () => setIsSettingsOpen((prev) => !prev);
   const toggleAccountModal = () => setIsAccountOpen((prev) => !prev);
+  const handleToggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
+
+  // On initial mount, set dark mode from localStorage
+  React.useEffect(() => {
+    const stored = localStorage.getItem("darkMode");
+    if (stored === "true") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
 
   return (
     <Router>
       <div className="bg-gray-50 flex">
-        <Sidebar />
-        <div className="flex-1 pl-64 flex flex-col h-screen overflow-y-auto">
+        {/* Sidebar: hidden on mobile */}
+        <div className="hidden md:block">
+          <Sidebar />
+        </div>
+        {/* Mobile Header */}
+        <Header onToggleMenu={handleToggleMobileMenu} />
+        {/* Mobile Menu Drawer */}
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={handleToggleMobileMenu}>
+          <Sidebar />
+        </MobileMenu>
+        <div className="flex-1 md:pl-64 flex flex-col h-screen overflow-y-auto">
           <Topbar
             onToggleRightSidebar={toggleRightSidebar}
             onToggleSettings={toggleSettingsModal}

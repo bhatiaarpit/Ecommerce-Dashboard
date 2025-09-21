@@ -177,16 +177,15 @@ const Customers = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
             <div className="bg-white border-b border-gray-200">
-                <div className="px-6 py-4">
+                <div className="px-4 md:px-6 py-4">
                     <h1 className="text-xl font-semibold text-gray-900">Customer List</h1>
                 </div>
             </div>
-
             {/* Content */}
-            <div className="p-6">
+            <div className="p-4 md:p-6">
                 <div className="bg-white rounded-lg border border-gray-200">
                     {/* Table Header Controls */}
-                    <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border-b border-gray-200 gap-4 md:gap-0">
                         <div className="flex items-center space-x-2">
                             <button className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md hover:bg-gray-200">
                                 <Plus className="w-4 h-4 text-gray-600" />
@@ -199,12 +198,12 @@ const Customers = () => {
                             </button>
                         </div>
                         
-                        <div className="relative">
+                        <div className="relative w-full max-w-xs">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                             />
                         </div>
                     </div>

@@ -12,7 +12,13 @@ import {
 } from 'lucide-react';
 
 const settingsModal = ({ isOpen, onClose }) => {
-    const [theme, setTheme] = useState('system');
+    const [theme, setTheme] = useState(() => {
+        // Get initial theme from localStorage or system
+        const stored = localStorage.getItem('darkMode');
+        if (stored === 'true') return 'dark';
+        if (stored === 'false') return 'light';
+        return 'system';
+    });
     const [notifications, setNotifications] = useState(true);
     const [sounds, setSounds] = useState(false);
     const [language, setLanguage] = useState('en');
@@ -25,20 +31,39 @@ const settingsModal = ({ isOpen, onClose }) => {
         }
     };
 
+    const applyTheme = (selectedTheme) => {
+        setTheme(selectedTheme);
+        if (selectedTheme === 'dark') {
+            localStorage.setItem('darkMode', 'true');
+            document.documentElement.classList.add('dark');
+        } else if (selectedTheme === 'light') {
+            localStorage.setItem('darkMode', 'false');
+            document.documentElement.classList.remove('dark');
+        } else {
+            // System: follow prefers-color-scheme
+            localStorage.removeItem('darkMode');
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+    };
+
     return (
         <div 
             className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
             onClick={handleOverlayClick}
         >
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-md mx-4">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                    <h2 className="text-lg font-semibold text-gray-900">Settings</h2>
+                <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Settings</h2>
                     <button
                         onClick={onClose}
-                        className="p-1 hover:bg-gray-100 rounded-full"
+                        className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
                     >
-                        <X className="w-5 h-5 text-gray-500" />
+                        <X className="w-5 h-5 text-gray-500 dark:text-gray-300" />
                     </button>
                 </div>
 
@@ -46,32 +71,32 @@ const settingsModal = ({ isOpen, onClose }) => {
                 <div className="p-4 space-y-4">
                     {/* Theme Settings */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             Theme
                         </label>
                         <div className="grid grid-cols-3 gap-2">
                             <button
-                                onClick={() => setTheme('light')}
-                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 ${
-                                    theme === 'light' ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                                onClick={() => applyTheme('light')}
+                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 ${
+                                    theme === 'light' ? 'border-blue-500 bg-blue-50 dark:bg-blue-950' : 'border-gray-200 dark:border-gray-700'
                                 }`}
                             >
                                 <Sun className="w-5 h-5 mb-1" />
                                 <span className="text-xs">Light</span>
                             </button>
                             <button
-                                onClick={() => setTheme('dark')}
-                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 ${
-                                    theme === 'dark' ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                                onClick={() => applyTheme('dark')}
+                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 ${
+                                    theme === 'dark' ? 'border-blue-500 bg-blue-50 dark:bg-blue-950' : 'border-gray-200 dark:border-gray-700'
                                 }`}
                             >
                                 <Moon className="w-5 h-5 mb-1" />
                                 <span className="text-xs">Dark</span>
                             </button>
                             <button
-                                onClick={() => setTheme('system')}
-                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 ${
-                                    theme === 'system' ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                                onClick={() => applyTheme('system')}
+                                className={`flex flex-col items-center p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 ${
+                                    theme === 'system' ? 'border-blue-500 bg-blue-50 dark:bg-blue-950' : 'border-gray-200 dark:border-gray-700'
                                 }`}
                             >
                                 <Monitor className="w-5 h-5 mb-1" />
@@ -152,7 +177,7 @@ const settingsModal = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Footer */}
-                <div className="flex justify-end p-4 border-t border-gray-200 bg-gray-50">
+                <div className="flex justify-end p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800">
                     <button
                         onClick={onClose}
                         className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"

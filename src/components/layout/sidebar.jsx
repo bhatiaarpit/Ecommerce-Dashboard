@@ -84,13 +84,18 @@ const Sidebar = () => {
     ],
   };
 
-  // Common styles
+  // Common styles with dark mode classes
   const styles = {
-    activeLink: "text-blue-600 bg-blue-50 font-medium",
-    inactiveLink: "text-gray-700 hover:bg-gray-50",
-    activeChild: "text-blue-600 bg-blue-50",
-    inactiveChild: "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-    activeBorder: "absolute left-0 top-0 w-1 h-full bg-gray-800 rounded-r-sm",
+    activeLink:
+      "text-blue-600 bg-blue-50 font-medium dark:text-blue-400 dark:bg-gray-950",
+    inactiveLink:
+      "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800",
+    activeChild:
+      "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-gray-950",
+    inactiveChild:
+      "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100",
+    activeBorder:
+      "absolute left-0 top-0 w-1 h-full bg-gray-800 dark:bg-blue-700 rounded-r-sm",
   };
 
   // Render nav link with consistent styling
@@ -101,8 +106,12 @@ const Sidebar = () => {
         className={({ isActive }) =>
           `flex items-center gap-3 px-3 py-${isChild ? "1.5" : "2"} rounded-md transition-colors relative ${
             isActive
-              ? isChild ? styles.activeChild : styles.activeLink
-              : isChild ? styles.inactiveChild : styles.inactiveLink
+              ? isChild
+                ? styles.activeChild
+                : styles.activeLink
+              : isChild
+              ? styles.inactiveChild
+              : styles.inactiveLink
           } ${isChild ? "text-sm" : ""}`
         }
       >
@@ -110,9 +119,9 @@ const Sidebar = () => {
           <>
             {isActive && <div className={styles.activeBorder}></div>}
             {Icon && (
-              <Icon 
-                size={iconSize} 
-                className={`${isActive ? "ml-1" : ""} ${iconSize === 4 ? "fill-current" : ""}`} 
+              <Icon
+                size={iconSize}
+                className={`${isActive ? "ml-1" : ""} ${iconSize === 4 ? "fill-current" : ""}`}
               />
             )}
             <span className={!Icon && isActive ? "ml-1" : ""}>{label}</span>
@@ -126,7 +135,7 @@ const Sidebar = () => {
   const renderCollapsibleSection = (item) => (
     <li key={item.label}>
       <div
-        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors"
+        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-gray-800"
         onClick={() => toggleSection(item.section)}
       >
         <div className="flex items-center gap-3">
@@ -134,19 +143,19 @@ const Sidebar = () => {
           <span>{item.label}</span>
         </div>
         {collapsedSections[item.section] ? (
-          <ChevronRight size={14} className="text-gray-400" />
+          <ChevronRight size={14} className="text-gray-400 dark:text-gray-500" />
         ) : (
-          <ChevronDown size={14} className="text-gray-400" />
+          <ChevronDown size={14} className="text-gray-400 dark:text-gray-500" />
         )}
       </div>
       {!collapsedSections[item.section] && item.children && (
         <ul className="ml-6 mt-1 space-y-1">
-          {item.children.map((child, index) => 
+          {item.children.map((child, index) =>
             child.to ? (
               renderNavLink({ ...child, isChild: true })
             ) : (
               <li key={index}>
-                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors">
+                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100">
                   {child.label}
                 </div>
               </li>
@@ -160,7 +169,7 @@ const Sidebar = () => {
   // Render navigation section
   const renderNavSection = (title, items) => (
     <div className="mb-6">
-      <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium">
+      <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium dark:text-gray-400">
         {title}
       </div>
       <ul className="space-y-1">
@@ -172,14 +181,14 @@ const Sidebar = () => {
   );
 
   return (
-    <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0">
+    <aside className="w-64 h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col fixed left-0 top-0">
       {/* Logo */}
       <div className="p-6 pb-4">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-gray-800 rounded-sm flex items-center justify-center text-white text-xs font-bold">
+          <div className="w-6 h-6 bg-gray-800 dark:bg-gray-200 rounded-sm flex items-center justify-center text-white dark:text-gray-900 text-xs font-bold">
             B
           </div>
-          <span className="font-semibold text-gray-900">ByeWind</span>
+          <span className="font-semibold text-gray-900 dark:text-gray-100">ByeWind</span>
         </div>
       </div>
 
@@ -187,7 +196,7 @@ const Sidebar = () => {
         {renderNavSection("Favorites", navigationConfig.favorites)}
         {renderNavSection("Dashboards", navigationConfig.dashboards)}
         <div>
-          <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium">
+          <div className="text-xs text-gray-500 uppercase mb-3 px-3 font-medium dark:text-gray-400">
             Pages
           </div>
           <ul className="space-y-1">

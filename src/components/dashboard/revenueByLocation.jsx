@@ -8,13 +8,13 @@ const locationData = [
 ];
 
 const RevenueByLocation = () => (
-  <div className="bg-white p-6 rounded-lg shadow-sm">
-    <h3 className="text-lg font-semibold text-gray-900 mb-6">
+  <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">
       Revenue by Location
     </h3>
     <div className="mb-6">
       {/* World map with location pins */}
-      <div className="relative bg-blue-50 rounded-lg h-48 overflow-hidden">
+      <div className="relative bg-blue-50 dark:bg-blue-900 rounded-lg h-48 overflow-hidden">
         <svg viewBox="0 0 400 200" className="w-full h-full">
           {/* Simplified world map outline */}
           <path
@@ -50,8 +50,10 @@ const RevenueByLocation = () => (
     <div className="space-y-3">
       {locationData.map((location, index) => (
         <div key={index} className="flex items-center justify-between">
-          <span className="text-sm text-gray-600">{location.city}</span>
-          <span className="text-sm font-medium text-gray-900">
+          <span className="text-sm text-gray-600 dark:text-gray-300">
+            {location.city}
+          </span>
+          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
             {location.value}
           </span>
         </div>

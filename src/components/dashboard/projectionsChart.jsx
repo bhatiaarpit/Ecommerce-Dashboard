@@ -1,12 +1,12 @@
 import React from 'react'
 
     const ProjectionsChart = () => (
-        <div className="bg-white p-6 rounded-lg shadow-sm h-80">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">Projections vs Actuals</h3>
+        <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm h-80">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">Projections vs Actuals</h3>
             
             {/* Y-axis labels */}
             <div className="flex h-52">
-                <div className="flex flex-col justify-between text-sm text-gray-500 mr-4 py-2">
+                <div className="flex flex-col justify-between text-sm text-gray-500 dark:text-gray-300 mr-4 py-2">
                     <span>30M</span>
                     <span>20M</span>
                     <span>10M</span>

@@ -32,8 +32,8 @@ import OrderTable from "../tables/orderTable";
 
     // Table Card Component
     const TableCard = () => (
-        <div className="bg-white p-4 rounded shadow h-full">
-            <h2 className="text-lg font-semibold mb-4">Top Selling Products</h2>
+        <div className="bg-white dark:bg-gray-900 p-4 rounded shadow h-full">
+            <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Top Selling Products</h2>
             <OrderTable />
             <PaginationControls />
         </div>
