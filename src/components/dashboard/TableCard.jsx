@@ -1,5 +1,5 @@
 import React from 'react'
-import PaginationControls from "../tables/PaginationControls";
+import PaginationControls from "../tables/paginationControls";
 import OrderTable from "../tables/OrderTable";
 
     const topProducts = [

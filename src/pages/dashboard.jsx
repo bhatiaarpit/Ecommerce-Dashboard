@@ -22,24 +22,6 @@ import RevenueByLocation from "../components/dashboard/RevenueByLocation";
 import TableCard from "../components/dashboard/TableCard"; // Make sure this import exists
 
 const Dashboard = () => {
-    // Sample data matching the design exactly
-    const revenueData = [
-        { month: "Jan", current: 10, previous: 15 },
-        { month: "Feb", current: 18, previous: 12 },
-        { month: "Mar", current: 15, previous: 8 },
-        { month: "Apr", current: 22, previous: 18 },
-        { month: "May", current: 12, previous: 25 },
-        { month: "Jun", current: 25, previous: 20 },
-    ];
-
-    const projectionsData = [
-        { month: "Jan", value: 15 },
-        { month: "Feb", value: 25 },
-        { month: "Mar", value: 20 },
-        { month: "Apr", value: 30 },
-        { month: "May", value: 15 },
-        { month: "Jun", value: 30 },
-    ];
 
     return (
         <div className="min-h-screen bg-gray-50">

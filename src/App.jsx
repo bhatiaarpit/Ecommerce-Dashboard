@@ -1,15 +1,15 @@
 import './App.css';
-import Sidebar from './components/layout/Sidebar';
+import Sidebar from './components/layout/sidebar';
 import RightSidebar from './components/layout/rightSidebar';
-import Dashboard from './pages/Dashboard';
-import Projects from './pages/Projects';
-import OnlineCourses from './pages/OnlineCourses';
-import OrderList from './pages/OrderList'; // Add this import
+import Dashboard from './pages/dashboard';
+import Projects from './pages/projects';
+import OnlineCourses from './pages/onlineCourses';
+import OrderList from './pages/orderList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import Topbar from './components/layout/Topbar';
-import SettingsModal from './components/modals/SettingsModal';
-import AccountModal from './components/modals/AccountModal';
+import Topbar from './components/layout/topbar';
+import SettingsModal from './components/modals/settingsModal';
+import AccountModal from './components/modals/accountModal';
 import Customers from './pages/customer';
 import Products from './pages/products';
 import Overview from './pages/overview';

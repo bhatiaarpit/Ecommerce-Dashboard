@@ -40,7 +40,7 @@ const getNotificationIcon = (type) => {
 
 const Section = ({ title, children }) => (
   <div className="mb-6">
-    <h2 className="flex items-center gap-2 font-semibold text-gray-700 text-base mb-4 pb-2 border-b">
+    <h2 className="flex items-center gap-2 font-semibold text-gray-700 text-base mb-4 pb-2">
       {title}
     </h2>
     {children}
@@ -65,7 +65,7 @@ const RightSidebar = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">Panel</h2>
+          <h2 className="text-lg font-semibold"></h2>
           <X className="cursor-pointer text-gray-500" onClick={onClose} />
         </div>
 

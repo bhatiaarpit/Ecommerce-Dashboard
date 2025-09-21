@@ -3,14 +3,6 @@ import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
 
 // Sample data for the projections chart 
 
-  const projectionsData = [
-    { month: 'Jan', value: 15 },
-    { month: 'Feb', value: 25 },
-    { month: 'Mar', value: 20 },
-    { month: 'Apr', value: 30 },
-    { month: 'May', value: 15 },
-    { month: 'Jun', value: 30 }
-  ];
 
     const ProjectionsChart = () => (
         <div className="bg-white p-6 rounded-lg shadow-sm h-80">

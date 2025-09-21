@@ -1,6 +1,6 @@
 import React from 'react';
-import TableHeader from './TableHeader';
-import TableRow from './TableRow';
+import TableHeader from './tableHeader';
+import TableRow from './tableRow';
 
 const products = [
   { name: 'ASOS Ridley High Waist', price: '$79.49', quantity: 82, amount: '$6,518.18' },
@@ -10,7 +10,7 @@ const products = [
   { name: 'Marco Shoes', price: '$79.49', quantity: 64, amount: '$1,695.84' },
 ];
 
-const OrderTable = () => {
+const orderTable = () => {
   return (
     <table className="min-w-full bg-white">
       <TableHeader />
@@ -23,4 +23,4 @@ const OrderTable = () => {
   );
 };
 
-export default OrderTable;
+export default orderTable;
