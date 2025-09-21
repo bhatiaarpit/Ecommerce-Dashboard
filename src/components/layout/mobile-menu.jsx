@@ -65,18 +65,20 @@ const navigationConfig = {
   ],
 };
 
+
 const styles = {
   activeLink:
-    "text-blue-600 bg-blue-50 font-medium dark:text-blue-400 dark:bg-gray-950",
+    "text-gray-900 bg-gray-300 font-medium dark:text-gray-100 dark:bg-gray-700",
   inactiveLink:
-    "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800",
+    "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-[#2A2D35]",
   activeChild:
-    "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-gray-950",
+    "text-gray-900 bg-gray-300 dark:text-gray-100 dark:bg-gray-700",
   inactiveChild:
-    "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100",
+    "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-[#2A2D35] dark:hover:text-gray-100",
   activeBorder:
-    "absolute left-0 top-0 w-1 h-full bg-gray-800 dark:bg-blue-700 rounded-r-sm",
+    "absolute left-0 top-0 w-1 h-full bg-gray-700 rounded-r-sm",
 };
+
 
 const MobileMenu = ({ isOpen, onClose }) => {
   const [collapsedSections, setCollapsedSections] = useState({
@@ -103,7 +105,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
     iconSize = 16,
     isChild = false,
   }) => (
-    <li className="relative">
+    <li className="relative" key={to}>
       <NavLink
         to={to}
         className={({ isActive }) =>
@@ -125,9 +127,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
             {Icon && (
               <Icon
                 size={iconSize}
-                className={`${
-                  isActive ? "ml-1" : ""
-                } ${iconSize === 4 ? "fill-current" : ""}`}
+                className={`${isActive ? "ml-1" : ""} ${
+                  iconSize === 4 ? "fill-current" : ""
+                }`}
               />
             )}
             <span className={!Icon && isActive ? "ml-1" : ""}>{label}</span>
@@ -137,10 +139,11 @@ const MobileMenu = ({ isOpen, onClose }) => {
     </li>
   );
 
+
   const renderCollapsibleSection = (item) => (
     <li key={item.label}>
       <div
-        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-gray-800"
+        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-[#2A2D35]"
         onClick={() => toggleSection(item.section)}
       >
         <div className="flex items-center gap-3">
@@ -160,7 +163,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
               renderNavLink({ ...child, isChild: true })
             ) : (
               <li key={index}>
-                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-[#2A2D35] dark:hover:text-gray-100">
                   {child.label}
                 </div>
               </li>
@@ -170,6 +173,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
       )}
     </li>
   );
+
 
   const renderNavSection = (title, items) => (
     <div className="mb-6">
@@ -187,10 +191,10 @@ const MobileMenu = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-30 bg-black/40 flex">
-      <div className="w-64 bg-white dark:bg-gray-900 h-full shadow-lg p-4 overflow-y-auto relative flex flex-col">
+      <div className="w-64 bg-white dark:bg-[#23272F] h-full shadow-lg p-4 overflow-y-auto relative flex flex-col">
         {/* Close Button */}
         <button
-          className="absolute top-3 right-3 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300"
+          className="absolute top-3 right-3 p-2 rounded-full bg-gray-100 dark:bg-[#3c4555] hover:bg-gray-200 dark:hover:bg-[#2A2D35] text-gray-500 dark:text-gray-300"
           onClick={onClose}
           aria-label="Close menu"
         >
@@ -235,7 +239,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         {/* Bottom Actions */}
         <div className="mt-6 mb-2 flex flex-col gap-2">
           <button
-            className="w-full flex items-center justify-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="w-full flex items-center justify-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-[#3c4555] text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-[#2A2D35]"
             onClick={() => {
               if (window && window.dispatchEvent) {
                 window.dispatchEvent(new CustomEvent("openSettingsModal"));

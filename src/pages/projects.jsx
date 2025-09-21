@@ -9,7 +9,6 @@ const Projects = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [sortBy, setSortBy] = useState('newest');
 
-  // Dummy project data
   const projects = [
     {
       id: 1,
@@ -147,15 +146,14 @@ const Projects = () => {
   const filteredProjects = useMemo(() => {
     let filtered = projects.filter(project => {
       const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          project.description.toLowerCase().includes(searchTerm.toLowerCase());
+                            project.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesStatus = statusFilter === 'all' || project.status === statusFilter;
       const matchesPriority = priorityFilter === 'all' || project.priority === priorityFilter;
       const matchesTeam = teamFilter === 'all' || project.team === teamFilter;
-      
+
       return matchesSearch && matchesStatus && matchesPriority && matchesTeam;
     });
 
-    // Sort projects
     switch (sortBy) {
       case 'newest':
         return filtered.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
@@ -174,20 +172,20 @@ const Projects = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'Completed': return 'bg-green-100 text-green-800';
-      case 'In Progress': return 'bg-blue-100 text-blue-800';
-      case 'Planning': return 'bg-yellow-100 text-yellow-800';
-      case 'On Hold': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'Completed': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-400';
+      case 'In Progress': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-400';
+      case 'Planning': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-400';
+      case 'On Hold': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-400';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-400';
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'High': return 'bg-red-100 text-red-800';
-      case 'Medium': return 'bg-yellow-100 text-yellow-800';
-      case 'Low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'High': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-400';
+      case 'Medium': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-400';
+      case 'Low': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-400';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-400';
     }
   };
 
@@ -201,20 +199,20 @@ const Projects = () => {
   };
 
   const ProjectCard = ({ project }) => (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-400 hover:shadow-md transition-shadow duration-200">
+    <div className="bg-white dark:bg-[#3c4555] rounded-lg shadow-sm border border-gray-400 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3">
             <div className={`w-3 h-3 rounded-full bg-${project.color}-500`}></div>
-            <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{project.name}</h3>
           </div>
-          <button className="text-gray-400 hover:text-gray-600">
+          <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
             <MoreVertical size={20} />
           </button>
         </div>
-        
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
-        
+
+        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">{project.description}</p>
+
         <div className="flex items-center justify-between mb-4">
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
             {project.status}
@@ -226,10 +224,10 @@ const Projects = () => {
 
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Progress</span>
-            <span className="text-sm font-medium text-gray-900">{project.progress}%</span>
+            <span className="text-sm text-gray-600 dark:text-gray-300">Progress</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{project.progress}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
             <div 
               className={`bg-${project.color}-500 h-2 rounded-full transition-all duration-300`}
               style={{ width: `${project.progress}%` }}
@@ -239,35 +237,35 @@ const Projects = () => {
 
         <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
           <div className="flex items-center space-x-2">
-            <DollarSign size={16} className="text-gray-400" />
+            <DollarSign size={16} className="text-gray-400 dark:text-gray-500" />
             <div>
-              <div className="text-gray-600">Budget</div>
+              <div className="text-gray-600 dark:text-gray-400">Budget</div>
               <div className="font-medium">{formatCurrency(project.budget)}</div>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Calendar size={16} className="text-gray-400" />
+            <Calendar size={16} className="text-gray-400 dark:text-gray-500" />
             <div>
-              <div className="text-gray-600">Due Date</div>
+              <div className="text-gray-600 dark:text-gray-400">Due Date</div>
               <div className="font-medium">{new Date(project.endDate).toLocaleDateString()}</div>
             </div>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-600">{project.team}</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{project.team}</div>
           <div className="flex -space-x-2">
             {project.members.slice(0, 3).map((member, index) => (
               <div
                 key={index}
-                className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600"
+                className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 dark:text-gray-300"
                 title={member}
               >
                 {member.split(' ').map(n => n[0]).join('')}
               </div>
             ))}
             {project.members.length > 3 && (
-              <div className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-500">
+              <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-500 dark:text-gray-400">
                 +{project.members.length - 3}
               </div>
             )}
@@ -278,13 +276,13 @@ const Projects = () => {
   );
 
   const ProjectRow = ({ project }) => (
-    <tr className="hover:bg-gray-50">
+    <tr className="hover:bg-gray-50 dark:hover:bg-[#2A2D35]">
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center space-x-3">
           <div className={`w-3 h-3 rounded-full bg-${project.color}-500`}></div>
           <div>
-            <div className="text-sm font-medium text-gray-900">{project.name}</div>
-            <div className="text-sm text-gray-500">{project.category}</div>
+            <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{project.name}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">{project.category}</div>
           </div>
         </div>
       </td>
@@ -298,24 +296,24 @@ const Projects = () => {
           {project.priority}
         </span>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
         {project.team}
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center">
-          <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
+          <div className="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-2">
             <div 
               className={`bg-${project.color}-500 h-2 rounded-full`}
               style={{ width: `${project.progress}%` }}
             ></div>
           </div>
-          <span className="text-sm text-gray-600">{project.progress}%</span>
+          <span className="text-sm text-gray-600 dark:text-gray-400">{project.progress}%</span>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
         {formatCurrency(project.budget)}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
         {new Date(project.endDate).toLocaleDateString()}
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
@@ -323,21 +321,21 @@ const Projects = () => {
           {project.members.slice(0, 3).map((member, index) => (
             <div
               key={index}
-              className="w-6 h-6 rounded-full bg-gray-300 border border-white flex items-center justify-center text-xs font-medium text-gray-600"
+              className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 border border-white flex items-center justify-center text-xs font-medium text-gray-600 dark:text-gray-300"
               title={member}
             >
               {member.split(' ').map(n => n[0]).join('')}
             </div>
           ))}
           {project.members.length > 3 && (
-            <div className="w-6 h-6 rounded-full bg-gray-100 border border-white flex items-center justify-center text-xs font-medium text-gray-500">
+            <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-gray-700 border border-white flex items-center justify-center text-xs font-medium text-gray-500 dark:text-gray-400">
               +{project.members.length - 3}
             </div>
           )}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-right">
-        <button className="text-gray-400 hover:text-gray-600">
+        <button className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300">
           <MoreVertical size={16} />
         </button>
       </td>
@@ -345,9 +343,9 @@ const Projects = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#23272F]">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-900 border-b border-gray-400 dark:border-gray-800">
+      <div className="bg-white dark:bg-[#3c4555] border-b border-gray-400 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
@@ -361,7 +359,7 @@ const Projects = () => {
                 <Plus size={16} />
                 <span>New Project</span>
               </button>
-              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-[#2A2D35] flex items-center space-x-2">
                 <Download size={16} />
                 <span>Export</span>
               </button>
@@ -372,16 +370,16 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-400 dark:border-gray-800 p-6 mb-6">
+        <div className="bg-white dark:bg-[#3c4555] rounded-lg shadow-sm border border-gray-400 dark:border-gray-700 p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-4">
             {/* Search */}
             <div className="lg:col-span-2">
               <div className="relative">
-                <Search size={20} className="absolute left-3 top-3 text-gray-400" />
+                <Search size={20} className="absolute left-3 top-3 text-gray-400 dark:text-gray-500" />
                 <input
                   type="text"
                   placeholder="Search projects..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -390,7 +388,7 @@ const Projects = () => {
 
             {/* Status Filter */}
             <select
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
             >
@@ -403,7 +401,7 @@ const Projects = () => {
 
             {/* Priority Filter */}
             <select
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
               value={priorityFilter}
               onChange={(e) => setPriorityFilter(e.target.value)}
             >
@@ -415,7 +413,7 @@ const Projects = () => {
 
             {/* Team Filter */}
             <select
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
               value={teamFilter}
               onChange={(e) => setTeamFilter(e.target.value)}
             >
@@ -427,7 +425,7 @@ const Projects = () => {
 
             {/* Sort */}
             <select
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-[#23272F] dark:text-gray-100 dark:border-gray-700"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >
@@ -443,18 +441,26 @@ const Projects = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 rounded-lg ${
+                  viewMode === 'grid'
+                    ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-400'
+                    : 'text-gray-400 hover:text-gray-600 dark:text-gray-300'
+                }`}
               >
                 <Grid size={20} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 rounded-lg ${
+                  viewMode === 'list'
+                    ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-400'
+                    : 'text-gray-400 hover:text-gray-600 dark:text-gray-300'
+                }`}
               >
                 <List size={20} />
               </button>
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500 dark:text-gray-400">
               Showing {filteredProjects.length} of {projects.length} projects
             </div>
           </div>
@@ -468,23 +474,23 @@ const Projects = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-400 overflow-hidden">
+          <div className="bg-white dark:bg-[#3c4555] rounded-lg shadow-sm border border-gray-400 dark:border-gray-700 overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-[#23272F]">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Members</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Project</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Priority</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Team</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Progress</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Budget</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Due Date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Members</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"></th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-[#3c4555] dark:divide-gray-700">
                   {filteredProjects.map(project => (
                     <ProjectRow key={project.id} project={project} />
                   ))}
@@ -496,8 +502,8 @@ const Projects = () => {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-500 text-lg mb-2">No projects found</div>
-            <div className="text-gray-400">Try adjusting your filters or search terms</div>
+            <div className="text-gray-500 dark:text-gray-400 text-lg mb-2">No projects found</div>
+            <div className="text-gray-400 dark:text-gray-500">Try adjusting your filters or search terms</div>
           </div>
         )}
       </div>

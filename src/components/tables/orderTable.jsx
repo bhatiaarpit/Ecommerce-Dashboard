@@ -10,9 +10,9 @@ const products = [
   { name: 'Marco Shoes', price: '$79.49', quantity: 64, amount: '$1,695.84' },
 ];
 
-const orderTable = () => {
+const OrderTable = () => {
   return (
-    <table className="min-w-full bg-white dark:bg-gray-900">
+    <table className="min-w-full bg-white dark:bg-[#3c4555]">
       <TableHeader />
       <tbody>
         {products.map((product, idx) => (
@@ -23,4 +23,4 @@ const orderTable = () => {
   );
 };
 
-export default orderTable;
+export default OrderTable;

@@ -84,23 +84,22 @@ const Sidebar = () => {
     ],
   };
 
-  // Common styles with dark mode classes
-  const styles = {
-    activeLink:
-      "text-blue-600 bg-blue-50 font-medium dark:text-blue-400 dark:bg-gray-950",
-    inactiveLink:
-      "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800",
-    activeChild:
-      "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-gray-950",
-    inactiveChild:
-      "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100",
-    activeBorder:
-      "absolute left-0 top-0 w-1 h-full bg-gray-800 dark:bg-blue-700 rounded-r-sm",
-  };
+const styles = {
+  activeLink:
+    "text-gray-900 bg-gray-300 font-medium dark:text-gray-100 dark:bg-gray-700",
+  inactiveLink:
+    "text-gray-700 hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-[#2A2D35]",
+  activeChild:
+    "text-gray-900 bg-gray-300 dark:text-gray-100 dark:bg-gray-700",
+  inactiveChild:
+    "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-[#2A2D35] dark:hover:text-gray-100",
+  activeBorder:
+    "absolute left-0 top-0 w-1 h-full bg-gray-700 rounded-r-sm",
+};
 
-  // Render nav link with consistent styling
+  // Render nav link
   const renderNavLink = ({ to, label, icon: Icon, iconSize = 16, isChild = false }) => (
-    <li className="relative">
+    <li className="relative" key={to}>
       <NavLink
         to={to}
         className={({ isActive }) =>
@@ -121,7 +120,9 @@ const Sidebar = () => {
             {Icon && (
               <Icon
                 size={iconSize}
-                className={`${isActive ? "ml-1" : ""} ${iconSize === 4 ? "fill-current" : ""}`}
+                className={`${isActive ? "ml-1" : ""} ${
+                  iconSize === 4 ? "fill-current" : ""
+                }`}
               />
             )}
             <span className={!Icon && isActive ? "ml-1" : ""}>{label}</span>
@@ -135,7 +136,7 @@ const Sidebar = () => {
   const renderCollapsibleSection = (item) => (
     <li key={item.label}>
       <div
-        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-gray-800"
+        className="flex items-center justify-between px-3 py-2 text-gray-700 cursor-pointer hover:bg-gray-50 rounded-md transition-colors dark:text-gray-300 dark:hover:bg-[#2A2D35]"
         onClick={() => toggleSection(item.section)}
       >
         <div className="flex items-center gap-3">
@@ -152,10 +153,10 @@ const Sidebar = () => {
         <ul className="ml-6 mt-1 space-y-1">
           {item.children.map((child, index) =>
             child.to ? (
-              renderNavLink({ ...child, isChild: true })
+              renderNavLink({ ...child, isChild: true, key: child.to })
             ) : (
               <li key={index}>
-                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+                <div className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md cursor-pointer transition-colors dark:text-gray-400 dark:hover:bg-[#2A2D35] dark:hover:text-gray-100">
                   {child.label}
                 </div>
               </li>
@@ -181,7 +182,7 @@ const Sidebar = () => {
   );
 
   return (
-    <aside className="w-64 h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col fixed left-0 top-0">
+    <aside className="w-64 h-screen bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-700 flex flex-col fixed left-0 top-0">
       {/* Logo */}
       <div className="p-6 pb-4">
         <div className="flex items-center gap-2">

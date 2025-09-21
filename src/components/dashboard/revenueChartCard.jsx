@@ -1,59 +1,96 @@
-import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import React, { useState, useEffect } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 const revenueData = [
-  { month: 'Jan', current: 10, previous: 15 },
-  { month: 'Feb', current: 18, previous: 12 },
-  { month: 'Mar', current: 15, previous: 8 },
-  { month: 'Apr', current: 22, previous: 18 },
-  { month: 'May', current: 12, previous: 25 },
-  { month: 'Jun', current: 25, previous: 20 }
+  { month: "Jan", current: 10, previous: 15 },
+  { month: "Feb", current: 18, previous: 12 },
+  { month: "Mar", current: 15, previous: 8 },
+  { month: "Apr", current: 22, previous: 18 },
+  { month: "May", current: 12, previous: 25 },
+  { month: "Jun", current: 25, previous: 20 },
 ];
 
-const RevenueChartCard = () => (
-    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
+const RevenueChartCard = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDarkMode(isDark);
+  }, []);
+
+  return (
+    <div className="bg-white dark:bg-[#3c4555] p-6 rounded-lg shadow-sm">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Revenue</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          Revenue
+        </h3>
         <div className="flex space-x-6 text-sm">
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-black dark:bg-gray-100 rounded-full mr-2"></div>
-            <span className="text-gray-600 dark:text-gray-300">Current Week</span>
-            <span className="text-gray-900 dark:text-gray-100 font-medium ml-1">$58,211</span>
+            <div
+              className={`w-3 h-3 rounded-full mr-2 ${
+                darkMode ? "bg-gray-100" : "bg-black"
+              }`}
+            ></div>
+            <span
+              className={`${
+                darkMode ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
+              Current Week
+            </span>
+            <span
+              className={`font-medium ml-1 ${
+                darkMode ? "text-gray-100" : "text-gray-900"
+              }`}
+            >
+              $58,211
+            </span>
           </div>
           <div className="flex items-center">
             <div className="w-3 h-3 bg-blue-400 rounded-full mr-2"></div>
-            <span className="text-gray-600 dark:text-gray-300">Previous Week</span>
-            <span className="text-gray-900 dark:text-gray-100 font-medium ml-1">$68,768</span>
+            <span className={`text-gray-600 dark:text-gray-300`}>
+              Previous Week
+            </span>
+            <span className={`text-gray-900 dark:text-gray-100 font-medium ml-1`}>
+              $68,768
+            </span>
           </div>
         </div>
       </div>
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={revenueData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis 
-              dataKey="month" 
+            <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#374151" : "#f0f0f0"} />
+            <XAxis
+              dataKey="month"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#6b7280', fontSize: 12 }}
+              tick={{ fill: darkMode ? "#9CA3AF" : "#6b7280", fontSize: 12 }}
             />
-            <YAxis 
+            <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#6b7280', fontSize: 12 }}
+              tick={{ fill: darkMode ? "#9CA3AF" : "#6b7280", fontSize: 12 }}
               domain={[0, 30]}
             />
-            <Line 
-              type="monotone" 
-              dataKey="current" 
-              stroke="#000000" 
+            <Line
+              type="monotone"
+              dataKey="current"
+              stroke={darkMode ? "#60A5FA" : "#111827"}
               strokeWidth={2}
               dot={false}
             />
-            <Line 
-              type="monotone" 
-              dataKey="previous" 
-              stroke="#60A5FA" 
+            <Line
+              type="monotone"
+              dataKey="previous"
+              stroke={darkMode ? "#93C5FD" : "#60A5FA"}
               strokeWidth={2}
               strokeDasharray="5 5"
               dot={false}
@@ -63,5 +100,6 @@ const RevenueChartCard = () => (
       </div>
     </div>
   );
+};
 
-export default RevenueChartCard
+export default RevenueChartCard;

@@ -19,11 +19,9 @@ const Topbar = ({ onToggleRightSidebar, onToggleSettings, onToggleAccount }) => 
   const crumbs = breadcrumbMap[location.pathname] || ["Dashboards", "Default"];
   const page = pageNames[location.pathname] || "Dashboard";
 
-  // Dark mode state
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // On mount, check localStorage for dark mode
     const stored = localStorage.getItem("darkMode");
     if (stored === "true") {
       setDarkMode(true);
@@ -48,22 +46,24 @@ const Topbar = ({ onToggleRightSidebar, onToggleSettings, onToggleAccount }) => 
   };
 
   return (
-    <header className="h-16 z-10 fixed w-[-webkit-fill-available] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center px-6 justify-between">
+    <header className="h-16 z-10 fixed w-[-webkit-fill-available] bg-white dark:bg-[#23272F] border-b border-gray-200 dark:border-gray-700 flex items-center px-6 justify-between">
       {/* Breadcrumb */}
       <nav className="flex items-center space-x-2 text-sm">
         <Link
           to="/"
           className={
-            crumbs[0] === "Dashboards" ? "font-semibold" : "text-gray-400"
+            crumbs[0] === "Dashboards"
+              ? "font-semibold text-gray-700 dark:text-gray-100"
+              : "text-gray-400 dark:text-gray-500"
           }
         >
           {crumbs[0]}
         </Link>
-        <span className="text-gray-400">/</span>
+        <span className="text-gray-400 dark:text-gray-500">/</span>
         {location.pathname === "/" ? (
-          <span className="text-gray-400">{crumbs[1]}</span>
+          <span className="text-gray-400 dark:text-gray-500">{crumbs[1]}</span>
         ) : (
-          <span className="font-semibold">{crumbs[1]}</span>
+          <span className="font-semibold text-gray-700 dark:text-gray-100">{crumbs[1]}</span>
         )}
       </nav>
 
@@ -73,9 +73,9 @@ const Topbar = ({ onToggleRightSidebar, onToggleSettings, onToggleAccount }) => 
           <input
             type="text"
             placeholder="Search"
-            className="pl-8 pr-3 py-1.5 border rounded-lg bg-gray-50 dark:bg-gray-800 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-gray-200"
+            className="pl-8 pr-3 py-1.5 border rounded-lg bg-gray-50 dark:bg-[#3c4555] text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-gray-100 dark:border-gray-700 border-gray-300"
           />
-          <Search size={16} className="absolute left-2 top-2.5 text-gray-400" />
+          <Search size={16} className="absolute left-2 top-2.5 text-gray-400 dark:text-gray-500" />
         </div>
 
         {/* Icons */}
@@ -83,29 +83,29 @@ const Topbar = ({ onToggleRightSidebar, onToggleSettings, onToggleAccount }) => 
           {darkMode ? (
             <Moon
               size={18}
-              className="cursor-pointer"
+              className="cursor-pointer text-gray-500 dark:text-gray-300"
               onClick={handleToggleDarkMode}
             />
           ) : (
             <Sun
               size={18}
-              className="cursor-pointer"
+              className="cursor-pointer text-gray-500 dark:text-gray-300"
               onClick={handleToggleDarkMode}
             />
           )}
           <Bell
             size={18}
-            className="cursor-pointer"
+            className="cursor-pointer text-gray-500 dark:text-gray-300"
             onClick={onToggleRightSidebar}
           />
           <Settings
             size={18}
-            className="cursor-pointer"
+            className="cursor-pointer text-gray-500 dark:text-gray-300"
             onClick={onToggleSettings}
           />
           <User
             size={18}
-            className="cursor-pointer"
+            className="cursor-pointer text-gray-500 dark:text-gray-300"
             onClick={onToggleAccount}
           />
         </div>

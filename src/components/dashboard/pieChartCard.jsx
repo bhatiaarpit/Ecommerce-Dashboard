@@ -10,7 +10,7 @@ const salesChannels = [
 
 // Total Sales Pie Chart
 const TotalSalesChart = () => (
-  <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
+  <div className="bg-white dark:bg-[#3c4555] p-6 rounded-lg shadow-sm">
     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">
       Total Sales
     </h3>
@@ -50,9 +50,7 @@ const TotalSalesChart = () => (
               className="w-3 h-3 rounded-full mr-3"
               style={{ backgroundColor: channel.color }}
             ></div>
-            <span className="text-sm text-gray-600 dark:text-gray-300">
-              {channel.name}
-            </span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{channel.name}</span>
           </div>
           <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
             ${channel.value}
