@@ -1,6 +1,6 @@
 import './App.css';
 import Sidebar from './components/layout/sidebar';
-import RightSidebar from './components/layout/rightsidebar';
+import RightSidebar from './components/layout/rightSidebar';
 import Dashboard from './pages/dashboard';
 import Projects from './pages/projects';
 import OnlineCourses from './pages/onlineCourses';

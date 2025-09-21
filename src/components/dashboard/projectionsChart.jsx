@@ -1,8 +1,4 @@
 import React from 'react'
-import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
-
-// Sample data for the projections chart 
-
 
     const ProjectionsChart = () => (
         <div className="bg-white p-6 rounded-lg shadow-sm h-80">

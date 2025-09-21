@@ -11,7 +11,7 @@ import {
     Monitor
 } from 'lucide-react';
 
-const SettingsModal = ({ isOpen, onClose }) => {
+const settingsModal = ({ isOpen, onClose }) => {
     const [theme, setTheme] = useState('system');
     const [notifications, setNotifications] = useState(true);
     const [sounds, setSounds] = useState(false);
@@ -165,4 +165,4 @@ const SettingsModal = ({ isOpen, onClose }) => {
     );
 };
 
-export default SettingsModal;
+export default settingsModal;

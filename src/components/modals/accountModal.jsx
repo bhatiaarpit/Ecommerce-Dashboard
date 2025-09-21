@@ -16,7 +16,7 @@ import {
     Key
 } from 'lucide-react';
 
-const AccountModal = ({ isOpen, onClose }) => {
+const accountModal = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('profile');
 
     if (!isOpen) return null;
@@ -316,4 +316,4 @@ const AccountModal = ({ isOpen, onClose }) => {
     );
 };
 
-export default AccountModal;
+export default accountModal;

@@ -14,12 +14,12 @@ import {
 } from "recharts";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
-import RevenueChartCard from "../components/dashboard/RevenueChartCard";
-import StatCard from "../components/dashboard/StatCard";
-import ProjectionsChart from "../components/dashboard/ProjectionsChart";
-import TotalSalesChart from "../components/dashboard/PieChartCard";
-import RevenueByLocation from "../components/dashboard/RevenueByLocation";
-import TableCard from "../components/dashboard/TableCard"; // Make sure this import exists
+import RevenueChartCard from "../components/dashboard/revenueChartCard";
+import StatCard from "../components/dashboard/statCard";
+import ProjectionsChart from "../components/dashboard/projectionsChart";
+import TotalSalesChart from "../components/dashboard/pieChartCard";
+import RevenueByLocation from "../components/dashboard/revenueByLocation";
+import TableCard from "../components/dashboard/tableCard"; // Make sure this import exists
 
 const Dashboard = () => {
 

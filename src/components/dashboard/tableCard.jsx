@@ -1,6 +1,6 @@
 import React from 'react'
 import PaginationControls from "../tables/paginationControls";
-import OrderTable from "../tables/OrderTable";
+import OrderTable from "../tables/orderTable";
 
     const topProducts = [
         {
