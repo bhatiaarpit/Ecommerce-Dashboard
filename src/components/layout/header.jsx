@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Sun, Moon } from "lucide-react";
-import RightSidebar from "./RightSidebar"; // Adjust the import based on your file structure
+import RightSidebar from "./rightSidebar"; // Adjust the import based on your file structure
 
 const Header = ({ onToggleMenu }) => {
   const [darkMode, setDarkMode] = useState(false);
